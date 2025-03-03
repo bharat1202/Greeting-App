@@ -1,9 +1,10 @@
 package org.example.greetingspring;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/greeting")
@@ -22,8 +23,20 @@ public class GreetingController {
         return greetingService.createGreeting(firstName, lastName);
     }
 
-    @GetMapping
-    public List<Greeting> getAllGreetings() {
-        return greetingService.getAllGreetings();
+    @GetMapping("/{id}")
+    public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) {
+        Optional<Greeting> greeting = greetingService.getGreetingById(id);
+        return greeting.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Greeting> updateGreeting(@PathVariable Long id, @RequestParam String message) {
+        try {
+            Greeting updatedGreeting = greetingService.updateGreeting(id, message);
+            return ResponseEntity.ok(updatedGreeting);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

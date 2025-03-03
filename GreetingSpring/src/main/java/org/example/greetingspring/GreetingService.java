@@ -3,7 +3,7 @@ package org.example.greetingspring;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -31,7 +31,16 @@ public class GreetingService {
         return greetingRepository.save(greeting);
     }
 
-    public List<Greeting> getAllGreetings() {
-        return greetingRepository.findAll();
+    public Optional<Greeting> getGreetingById(Long id) {
+        return greetingRepository.findById(id);
+    }
+
+    public Greeting updateGreeting(Long id, String newMessage) {
+        return greetingRepository.findById(id)
+                .map(greeting -> {
+                    greeting.setMessage(newMessage);
+                    return greetingRepository.save(greeting);
+                })
+                .orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
     }
 }
