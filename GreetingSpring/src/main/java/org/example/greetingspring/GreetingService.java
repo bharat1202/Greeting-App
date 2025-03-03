@@ -4,7 +4,6 @@ package org.example.greetingspring;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -34,9 +33,5 @@ public class GreetingService {
 
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
-    }
-
-    public Optional<Greeting> getGreetingById(Long id) {
-        return greetingRepository.findById(id);
     }
 }
