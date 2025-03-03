@@ -35,12 +35,11 @@ public class GreetingService {
         return greetingRepository.findById(id);
     }
 
-    public Greeting updateGreeting(Long id, String newMessage) {
-        return greetingRepository.findById(id)
-                .map(greeting -> {
-                    greeting.setMessage(newMessage);
-                    return greetingRepository.save(greeting);
-                })
-                .orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
+    public void deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Greeting not found with ID: " + id);
+        }
     }
 }

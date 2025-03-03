@@ -30,11 +30,11 @@ public class GreetingController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Greeting> updateGreeting(@PathVariable Long id, @RequestParam String message) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGreeting(@PathVariable Long id) {
         try {
-            Greeting updatedGreeting = greetingService.updateGreeting(id, message);
-            return ResponseEntity.ok(updatedGreeting);
+            greetingService.deleteGreeting(id);
+            return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
