@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
@@ -23,41 +23,32 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-config'
+    implementation 'org.springframework.security:spring-security-web'
+
+
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
-
-    // If using test classes, add:
-    testImplementation 'org.projectlombok:lombok:1.18.30'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
-    // Jakarta Validation API
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
-
-    // Hibernate Validator (Jakarta Validation Implementation)
-    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
-
-    // Required for Jakarta Bean Validation in Spring Boot
-    implementation 'org.glassfish:jakarta.el:4.0.2'
-    // Jakarta Validation API
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
-
-    // Hibernate Validator (Jakarta Validation Implementation)
-    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
-
-    // Required for Jakarta Bean Validation
-    implementation 'org.glassfish:jakarta.el:4.0.2'
-    // Spring Security
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-
-    // BCrypt Password Encoder (for hashing passwords)
-    implementation 'org.springframework.security:spring-security-crypto:5.8.5'
-    runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'jakarta.mail:jakarta.mail-api:2.1.2'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    implementation 'org.springframework.security:spring-security-config:6.2.3'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.4'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
 
 
 

@@ -1,9 +1,10 @@
-package org.example.greetingspring;
+package org.example.greetingspring.model;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "greetings")
+
 public class Greeting {
 
     @Id
@@ -12,15 +13,11 @@ public class Greeting {
 
     private String message;
 
-    public Greeting() {
-    }
+    public Greeting() {}
 
     public Greeting(String message) {
         this.message = message;
-    }
 
-    public Long getId() {
-        return id;
     }
 
     public String getMessage() {
@@ -29,5 +26,13 @@ public class Greeting {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
